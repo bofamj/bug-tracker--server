@@ -3,8 +3,10 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 
+//*internal file
 const connectDb = require("./db/conectDB");
 const userRouter = require("./route/user");
+const projectRouter = require("./route/projects");
 
 //* internals middlewares
 app.use(cors());
@@ -12,6 +14,8 @@ app.use(express.json());
 
 //* the register & signIn route
 app.use("/api/v1", userRouter);
+//* the projects route
+app.use("/api/v1", projectRouter);
 
 const port = process.env.PORT || 7000;
 

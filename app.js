@@ -7,6 +7,7 @@ const cors = require("cors");
 const connectDb = require("./db/conectDB");
 const userRouter = require("./route/user");
 const projectRouter = require("./route/projects");
+const issueRouter = require("./route/issue");
 
 //* internals middlewares
 app.use(cors());
@@ -16,6 +17,8 @@ app.use(express.json());
 app.use("/api/v1", userRouter);
 //* the projects route
 app.use("/api/v1", projectRouter);
+//* the issue route
+app.use("/api/v1", issueRouter);
 
 const port = process.env.PORT || 7000;
 

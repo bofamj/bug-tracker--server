@@ -5,7 +5,9 @@ const IssueSchema = new mongoose.Schema(
     name: {
       type: "string",
       required: [true, "add a name for the issue"],
+      unique: [true, "there is already an existing issue with the same name"],
     },
+
     discrption: {
       type: "string",
       required: [true, "you most add a description "],
@@ -36,6 +38,10 @@ const IssueSchema = new mongoose.Schema(
     assignedTo: {
       type: mongoose.Types.ObjectId,
       ref: "user",
+    },
+    issueStatus: {
+      type: "string",
+      default: "in processing",
     },
   },
   { timestamps: true }

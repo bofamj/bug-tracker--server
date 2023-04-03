@@ -14,9 +14,8 @@ const IssueSchema = new mongoose.Schema(
       minlength: 10,
     },
     project: {
-      type: mongoose.Types.ObjectId,
+      type: "string",
       ref: "Projects",
-      required: [true, "avry issue most bilong to a project"],
     },
     priority: {
       type: "string",
@@ -26,7 +25,6 @@ const IssueSchema = new mongoose.Schema(
     createdBy: {
       type: mongoose.Types.ObjectId,
       ref: "user",
-      required: true,
     },
     closedBy: {
       type: mongoose.Types.ObjectId,
@@ -36,13 +34,22 @@ const IssueSchema = new mongoose.Schema(
       type: "string",
     },
     assignedTo: {
-      type: mongoose.Types.ObjectId,
+      type: "string",
       ref: "user",
     },
     issueStatus: {
       type: "string",
       default: "in processing",
     },
+    version: {
+      type: "string",
+    },
+    message: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "Message",
+      },
+    ],
   },
   { timestamps: true }
 );

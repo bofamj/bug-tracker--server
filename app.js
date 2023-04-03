@@ -8,6 +8,8 @@ const connectDb = require("./db/conectDB");
 const userRouter = require("./route/user");
 const projectRouter = require("./route/projects");
 const issueRouter = require("./route/issue");
+const messageRouter = require("./route/message");
+const auththentcation = require("./middleware/authe");
 
 //* internals middlewares
 app.use(cors());
@@ -18,7 +20,9 @@ app.use("/api/v1", userRouter);
 //* the projects route
 app.use("/api/v1", projectRouter);
 //* the issue route
-app.use("/api/v1", issueRouter);
+app.use("/api/v1", auththentcation, issueRouter);
+//* the message route
+app.use("/api/v1", auththentcation, messageRouter);
 
 const port = process.env.PORT || 7000;
 

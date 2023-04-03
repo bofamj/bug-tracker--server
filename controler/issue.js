@@ -101,6 +101,24 @@ const findIssue = async (req, res) => {
   }
 };
 
+//! find user issues
+
+const findUserIssue = async (req, res) => {
+  const {
+    user: { userId },
+  } = req;
+
+  try {
+    const issues = await Issue.find({ createdBy: userId });
+    if (!issues) {
+      return res.status(404).send({ message: "you have no issues" });
+    }
+    res.status(200).json(issues);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 //!delete an issue
 const deleteIssue = async (req, res) => {
   const { id } = req.params;
@@ -152,4 +170,5 @@ module.exports = {
   findIssue,
   deleteIssue,
   updateIssue,
+  findUserIssue,
 };

@@ -9,6 +9,12 @@ const ProjectsSchema = new mongoose.Schema(
       minlength: 3,
     },
     discription: { type: "string", required: true, minlength: 10 },
+    issues: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "Issue",
+      },
+    ],
   },
   { timestamps: true }
 );

@@ -7,8 +7,9 @@ const {
   findIssue,
   deleteIssue,
   updateIssue,
+  findUserIssue,
 } = require(".././controler/issue");
-
+router.route("/issue/user").get(findUserIssue);
 router.route("/issue").post(createIssue).get(findAllIssues);
 router
   .route("/issue/:id")

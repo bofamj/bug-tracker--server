@@ -18,7 +18,13 @@ const register = async (req, res) => {
     //*send the token and the user details
     res
       .status(200)
-      .json({ name: user.name, email: user.email, role: user.role, token });
+      .json({
+        userId: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        token,
+      });
   } catch (error) {
     res.status(500).json({ masseg: error.message, error });
   }
@@ -72,7 +78,7 @@ const getUsers = async (req, res) => {
     return res.status(400).json({ messeg: error.message });
   }
   try {
-    res.status(200).json({ ...users });
+    res.status(200).json(users);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

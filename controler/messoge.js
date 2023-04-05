@@ -22,5 +22,17 @@ const getAllMessage = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
+//!get all Messages
 
-module.exports = { createMessage, getAllMessage };
+const getATicketMessages = async (req, res) => {
+  const { belongTo } = req.body; //*to find all messages that belong to a specific issue
+
+  const messages = await Message.find({ belongTo });
+  try {
+    res.status(200).json(messages);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { createMessage, getAllMessage, getATicketMessages };

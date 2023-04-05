@@ -47,6 +47,7 @@ const createIssue = async (req, res) => {
 
   try {
     res.status(200).json({
+      issueId: issue._id,
       name,
       discrption,
       project,

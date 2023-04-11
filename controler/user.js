@@ -16,15 +16,13 @@ const register = async (req, res) => {
     //* create the token
     const token = user.createJWT();
     //*send the token and the user details
-    res
-      .status(200)
-      .json({
-        userId: user._id,
-        name: user.name,
-        email: user.email,
-        role: user.role,
-        token,
-      });
+    res.status(200).json({
+      userId: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      token,
+    });
   } catch (error) {
     res.status(500).json({ masseg: error.message, error });
   }
@@ -88,8 +86,10 @@ const getUsers = async (req, res) => {
 const getUser = async (req, res) => {
   //*git the id form the param
   const { id } = req.params;
+
   //*get user from the database and return without the user password
   const user = await User.findOne({ _id: id }).select("-password");
+
   //* if the is no user found with that id
   if (!user) {
     return res

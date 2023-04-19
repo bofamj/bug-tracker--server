@@ -39,7 +39,7 @@ const IssueSchema = new mongoose.Schema(
     },
     issueStatus: {
       type: "string",
-      default: "in processing",
+      default: "Pinding",
     },
     version: {
       type: "string",
